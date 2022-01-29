@@ -1,6 +1,3 @@
-unsigned long currentMillis1 = 0;
-unsigned long previousMillis = 0;
-unsigned long interval = 5000;
 String dats;
 byte manas;
 uint8_t donebit = 0;
@@ -29,13 +26,14 @@ void loop()
     //    Serial.print(manas, HEX);
     if (manas == 0xE2)
     {
-      fin_arr = "";
+      fin_arr = " ";
       arr[0] = manas;
       printdata(arr[0]);
       for (uint8_t k = 1; k <= 11; k++)
       {
-        if (Serial.available() > 0)
+        if (Serial.available())
         {
+          Serial.println();
           byte restdata = Serial.read();
           arr[k] = restdata;
           printdata(arr[k]);
@@ -80,6 +78,6 @@ void hex_to_printable_ascii(byte hexx)
     temp = hexx + 55;
     //    Serial.println(temp);
   }
-  fin_arr += String(temp);
-  //      Serial.println(fin_arr);
+  fin_arr += (temp);
+//        Serial.println(fin_arr);
 }
